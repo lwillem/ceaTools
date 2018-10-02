@@ -24,18 +24,24 @@ if(0==1){
 
   data('flu_data',package = 'ceaTools')
 
+  incremental_cost   <- sim_data$incremental_cost_disc
+  incremental_effect <- sim_data$total_DALYs_averted_disc
+  course_of_action   <- sim_data$scenario_name
+
+
 }
 
 plot_ce_plane <- function(incremental_cost,incremental_effect,course_of_action) {
 
   # convert "course_of_action" into levels
-  course_of_action <- factor(sim_data$course_of_action)
+  course_of_action <- factor(course_of_action)
 
   # create plot
   plot(incremental_cost ~ incremental_effect, col = course_of_action,
        xlab='Incremental Effect',
-       ylab='Incremental Cost')
+       ylab='Incremental Cost (USD)')
   abline(h=1,lty=3)
   abline(v=1,lty=3)
   legend('bottomright',levels(course_of_action),col=1:length(levels(course_of_action)),pch=1,cex=0.8)
 }
+
